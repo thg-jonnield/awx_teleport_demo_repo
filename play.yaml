@@ -1,12 +1,13 @@
 ---
 - hosts: all
 
-  tasks:
+  pre_tasks:
     - name: Setup Teleport connectivity
       ansible.builtin.include_tasks: teleport/setup.yaml
       vars:
         ansible_connection: local
 
+  tasks:
     - name: Hello World
       ansible.builtin.debug:
         msg: "Howdy {{ ansible_facts['distribution'] }}"
