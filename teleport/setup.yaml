@@ -1,6 +1,6 @@
 ---
 - name: Create temporary ID directory
-  ansible.builtin.tempfil:
+  ansible.builtin.tempfile:
     state: directory
   register: temp_id_dir
 
