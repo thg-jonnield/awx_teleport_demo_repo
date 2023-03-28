@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: false
 
   pre_tasks:
     - name: Setup Teleport connectivity
