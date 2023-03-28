@@ -1,0 +1,9 @@
+---
+- name: Where are we
+  ansible.builtin.command:
+    cmd: pwd
+  register: wo_bist
+
+- name: Debug:
+  ansible.builtin.debug:
+    msg: "Here we are: {{ wo_bist.stdout }}"
