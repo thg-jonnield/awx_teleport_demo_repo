@@ -8,6 +8,9 @@
       vars:
         ansible_connection: local
 
+    - name: Gather facts
+      ansible.builtin.setup:
+
   tasks:
     - name: Hello World
       ansible.builtin.debug:
