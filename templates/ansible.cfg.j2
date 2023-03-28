@@ -1,0 +1,7 @@
+[defaults]
+host_key_checking = True
+remote_tmp=/tmp
+
+[ssh_connection]
+scp_if_ssh = True
+ssh_args = -F {{ temp_id_dir.path }}/ssh_config

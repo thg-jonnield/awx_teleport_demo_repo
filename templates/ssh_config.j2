@@ -7,4 +7,4 @@ Host *.thehutgroup.teleport.sh thehutgroup.teleport.sh
 # Flags for all thehutgroup.teleport.sh hosts except the proxy
 Host *.thehutgroup.teleport.sh !thehutgroup.teleport.sh
     Port 3022
-    ProxyCommand "/usr/local/bin/tbot" proxy --destination-dir=/tmp/tbot/awx --proxy=thehutgroup.teleport.sh ssh --cluster=thehutgroup.teleport.sh  %r@%h:%p
+    ProxyCommand "/usr/local/bin/tbot" proxy --destination-dir={{ temp_id_dir.path }} --proxy=thehutgroup.teleport.sh ssh --cluster=thehutgroup.teleport.sh  %r@%h:%p
