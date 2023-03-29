@@ -13,6 +13,7 @@
   ansible.builtin.copy:
     content: "{{ ssh_priv_key }}"
     dest: "{{ temp_id_dir.path }}/key"
+    mode: 0600
 
 - name: Create SSH public key file
   ansible.builtin.copy:
