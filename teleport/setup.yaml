@@ -4,6 +4,11 @@
     state: directory
   register: temp_id_dir
 
+- name: Create Teleport identity
+  ansible.builtin.copy:
+    content: "{{ teleport_identity }}"
+    dest: "{{ temp_id_dir.path}}/identity"
+
 - name: Create SSH private key file
   ansible.builtin.copy:
     content: "{{ ssh_priv_key }}"
