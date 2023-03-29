@@ -24,7 +24,6 @@
     src: "ssh_config.j2"
     dest: "{{ temp_id_dir.path }}/ssh_config"
 
-- name: Create ansible.cfg
-  ansible.builtin.template:
-    src: "ansible.cfg.j2"
-    dest: "ansible.cfg"
+- name: Set ansible configuration facts
+  ansible.builtin.set_fact:
+    ansible_ssh_args: "-F {{ temp_id_dir.path }}/ssh_config"
