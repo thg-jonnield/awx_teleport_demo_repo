@@ -8,12 +8,14 @@
   ansible.builtin.copy:
     content: "{{ teleport_identity }}"
     dest: "{{ temp_id_dir.path}}/identity"
+  no_log: true
 
 - name: Create SSH private key file
   ansible.builtin.copy:
     content: "{{ ssh_priv_key }}"
     dest: "{{ temp_id_dir.path }}/key"
     mode: 0600
+  no_log: true
 
 - name: Create SSH public key file
   ansible.builtin.copy:
@@ -29,6 +31,7 @@
   ansible.builtin.template:
     src: "ssh_config.j2"
     dest: "{{ temp_id_dir.path }}/ssh_config"
+  no_log: true
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
