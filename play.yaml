@@ -2,6 +2,9 @@
 - hosts: all
   gather_facts: false
 
+  vars:
+    no_debug: true
+
   pre_tasks:
     - name: Setup Teleport connectivity
       ansible.builtin.include_tasks: teleport/setup.yaml
