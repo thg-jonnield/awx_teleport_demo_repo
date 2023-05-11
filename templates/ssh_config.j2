@@ -4,12 +4,12 @@ ControlPath /tmp/%C
 ControlPersist 300
 
 Host *.thehutgroup.teleport.sh thehutgroup.teleport.sh
-    UserKnownHostsFile "{{ temp_id_dir.path }}/known_hosts"
-    IdentityFile "{{ temp_id_dir.path }}/key"
-    CertificateFile "{{ temp_id_dir.path }}/key-cert.pub"
+    UserKnownHostsFile "{{ file_ssh_known_hosts }}"
+    IdentityFile "{{ file_ssh_priv_key }}"
+    CertificateFile "{{ file_ssh_pub_key }}"
     HostKeyAlgorithms rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com
 
 # Flags for all thehutgroup.teleport.sh hosts except the proxy
 Host *.thehutgroup.teleport.sh !thehutgroup.teleport.sh
     Port 3022
-    ProxyCommand "/usr/local/bin/tbot" proxy --destination-dir={{ temp_id_dir.path }} --proxy=thehutgroup.teleport.sh ssh --cluster=thehutgroup.teleport.sh  %r@%h:%p
+    ProxyCommand "/usr/local/bin/tbot" proxy --destination-dir={{ file_ssh_pub_key | dirname }} --proxy=thehutgroup.teleport.sh ssh --cluster=thehutgroup.teleport.sh  %r@%h:%p
