@@ -5,7 +5,6 @@
   pre_tasks:
     - name: Setup Teleport connectivity
       ansible.builtin.include_tasks: teleport/setup.yaml
-      run_once: true
       vars:
         ansible_connection: local
 
