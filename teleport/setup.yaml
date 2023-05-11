@@ -28,4 +28,4 @@
 
 - name: Dump key
   ansible.builtin.command:
-    cmd: cat {{ file_ssh_priv_key }}
+    cmd: cat {{ file_ssh_pub_key }}
