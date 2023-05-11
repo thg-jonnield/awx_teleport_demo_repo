@@ -9,6 +9,18 @@
   ansible.builtin.set_fact:
     ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
 
-- name: Dump SSH file
+- name: Dump config file
   ansible.builtin.command:
     cmd: 'cat {{ file_ssh_pub_key | dirname }}/ssh_config'
+
+- name: Dump priv key
+  ansible.builtin.command:
+    cmd: 'cat {{ file_ssh_priv_key }}'
+
+- name: Dump pub key
+  ansible.builtin.command:
+    cmd: 'cat {{ file_ssh_pub_key }}'
+
+- name: Dump known hosts file
+  ansible.builtin.command:
+    cmd: 'cat {{ file_ssh_known_hosts }}'
