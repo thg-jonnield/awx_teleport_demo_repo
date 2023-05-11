@@ -1,3 +1,8 @@
+Compression yes
+ControlMaster auto
+ControlPath /tmp/%C
+ControlPersist 300
+
 Host *.thehutgroup.teleport.sh thehutgroup.teleport.sh
     UserKnownHostsFile "{{ temp_id_dir.path }}/known_hosts"
     IdentityFile "{{ temp_id_dir.path }}/key"
