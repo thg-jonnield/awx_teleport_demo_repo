@@ -4,9 +4,9 @@ ControlPath /tmp/%C
 ControlPersist 300
 
 Host *.thehutgroup.teleport.sh thehutgroup.teleport.sh
-    UserKnownHostsFile "{{ file_ssh_known_hosts }}"
-    IdentityFile "{{ file_ssh_priv_key }}"
-    CertificateFile "{{ file_ssh_pub_key }}"
+    UserKnownHostsFile "{{ file_ssh_known_hosts | dirname }}/known_hosts"
+    IdentityFile "{{ file_ssh_priv_key | dirname }}/key"
+    CertificateFile "{{ file_ssh_pub_key | dirname }}/key-cert.pub"
     HostKeyAlgorithms rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com
 
 # Flags for all thehutgroup.teleport.sh hosts except the proxy

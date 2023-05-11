@@ -5,25 +5,22 @@
     dest: "{{ file_ssh_pub_key | dirname }}/ssh_config"
   no_log: "{{ no_log }}"
 
-- name: Copy identity to correct location
+# SSH has some expectations on file names for matching pub/priv keys
+- name: Copy files to correct names
   ansible.builtin.copy:
-    src: "{{ file_ssh_teleport_identity }}"
-    dest: "{{ file_ssh_teleport_identity | dirname }}/identity"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     remote_src: true
-
-# Ensure trailing newlines in files otherwise ssh fails to load the files
-- name: Ensure posix line endings
-  ansible.builtin.shell:
-    cmd: echo "" >> {{ item }}
   with_items:
-    - "{{ file_ssh_priv_key }}"
-    - "{{ file_ssh_pub_key }}"
-    - "{{ file_ssh_teleport_identity | dirname }}/identity"
+    - src: "{{ file_ssh_known_hosts }}"
+      dest: "{{ file_ssh_known_hosts | dirname }}/known_hosts"
+    - src: "{{ file_ssh_pub_key }}"
+      dest: "{{ file_ssh_pub_key | dirname }}/key-cert.pub"
+    - src: "{{ file_ssh_priv_key }}"
+      dest: "{{ file_ssh_priv_key | dirname }}/key"
+    - src: "{{ file_ssh_teleport_identity }}"
+      dest: "{{ file_ssh_teleport_identity | dirname }}/identity"
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
     ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config -vv"
-
-- name: Dump key
-  ansible.builtin.command:
-    cmd: cat {{ file_ssh_pub_key }}
