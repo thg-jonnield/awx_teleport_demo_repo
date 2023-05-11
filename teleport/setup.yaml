@@ -11,18 +11,16 @@
     dest: "{{ file_ssh_teleport_identity | dirname }}/identity"
     remote_src: true
 
-# If there isn't a trailing new line then ssh fails to load the private key
-- name: Ensure trailing new line in the SSH private key
+# Ensure trailing newlines in files otherwise ssh fails to load the files
+- name: Ensure posix line endings
   ansible.builtin.lineinfile:
-    path: "{{ file_ssh_priv_key }}"
+    path: "{{ item }}"
     line: ""
     insertafter: "EOF"
-
-- name: Ensure trailing new line in the Teleport identity file
-  ansible.builtin.lineinfile:
-    path: "{{ file_ssh_teleport_identity | dirname }}/identity"
-    line: ""
-    insertafter: "EOF"
+  with_items:
+    - "{{ file_ssh_priv_key }}"
+    - "{{ file_ssh_pub_key }}"
+    - "{{ file_ssh_teleport_identity | dirname }}/identity"
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
