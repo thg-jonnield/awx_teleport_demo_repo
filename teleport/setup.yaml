@@ -18,6 +18,12 @@
     line: ""
     insertafter: "EOF"
 
+- name: Ensure trailing new line in the Teleport identity file
+  ansible.builtin.lineinfile:
+    path: "{{ file_ssh_teleport_identity }}"
+    line: ""
+    insertafter: "EOF"
+
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
     ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
