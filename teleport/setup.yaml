@@ -7,8 +7,8 @@
 
 - name: Copy identity to correct location
   ansible.builtin.copy:
-    src: "{{ file_teleport_identity }}"
-    dest: "{{ file_teleport_identity | dirname }}/identity"
+    src: "{{ file_ssh_teleport_identity }}"
+    dest: "{{ file_ssh_teleport_identity | dirname }}/identity"
     remote_src: true
 
 - name: Set ansible configuration facts
