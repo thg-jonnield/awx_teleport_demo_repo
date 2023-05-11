@@ -22,7 +22,7 @@
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
-    ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
+    ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config -vv"
 
 - name: Dump key
   ansible.builtin.command:
