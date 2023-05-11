@@ -13,10 +13,8 @@
 
 # Ensure trailing newlines in files otherwise ssh fails to load the files
 - name: Ensure posix line endings
-  ansible.builtin.lineinfile:
-    path: "{{ item }}"
-    line: ""
-    insertafter: "EOF"
+  ansible.builtin.shell:
+    cmd: echo "" >> {{ item }}
   with_items:
     - "{{ file_ssh_priv_key }}"
     - "{{ file_ssh_pub_key }}"
