@@ -11,6 +11,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     remote_src: true
+    mode: 0600
   with_items:
     - src: "{{ file_ssh_known_hosts }}"
       dest: "{{ file_ssh_known_hosts | dirname }}/known_hosts"
