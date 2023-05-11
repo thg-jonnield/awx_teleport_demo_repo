@@ -5,22 +5,12 @@
     dest: "{{ file_ssh_pub_key | dirname }}/ssh_config"
   no_log: "{{ no_log }}"
 
+- name: Copy identity to correct location
+  ansible.builtin.copy:
+    src: "{{ file_teleport_identity }}"
+    dest: "{{ file_teleport_identity | dirname }}/identity"
+    remote_src: true
+
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
     ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
-
-- name: Dump config file
-  ansible.builtin.command:
-    cmd: 'cat {{ file_ssh_pub_key | dirname }}/ssh_config'
-
-- name: Dump priv key
-  ansible.builtin.command:
-    cmd: 'cat {{ file_ssh_priv_key }}'
-
-- name: Dump pub key
-  ansible.builtin.command:
-    cmd: 'cat {{ file_ssh_pub_key }}'
-
-- name: Dump known hosts file
-  ansible.builtin.command:
-    cmd: 'cat {{ file_ssh_known_hosts }}'
