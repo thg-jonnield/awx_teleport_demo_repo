@@ -2,9 +2,9 @@
 - name: Create Ansible SSH configuration
   ansible.builtin.template:
     src: "ssh_config.j2"
-    dest: "{{ temp_id_dir.path }}/ssh_config"
+    dest: "{{ file_ssh_pub_key | dirname }}/ssh_config"
   no_log: "{{ no_log }}"
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
-    ansible_ssh_args: "-F {{ temp_id_dir.path }}/ssh_config"
+    ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
