@@ -24,4 +24,4 @@
 
 - name: Set ansible configuration facts
   ansible.builtin.set_fact:
-    ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config -vv"
+    ansible_ssh_args: "-F {{ file_ssh_pub_key | dirname }}/ssh_config"
