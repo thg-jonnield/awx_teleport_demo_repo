@@ -1,0 +1,6 @@
+---
+roles:
+  - src: git@github.com:thg-jonnield/ansible-role-awx-teleport-connector.git
+    name: awx-teleport-connector
+    scm: git
+    version: main

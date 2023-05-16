@@ -4,11 +4,10 @@
 
   pre_tasks:
     - name: Setup Teleport connectivity
-      ansible.builtin.include_tasks: teleport/setup.yaml
-      vars:
-        ansible_connection: local
+      ansible.builtin.include_role:
+        name: awx-teleport-connector
 
-    - name: Gather facts
+    - name: Gathering facts
       ansible.builtin.setup:
 
   tasks:
