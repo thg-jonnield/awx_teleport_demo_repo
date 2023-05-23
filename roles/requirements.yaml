@@ -4,3 +4,6 @@ roles:
     name: awx-teleport-connector
     scm: git
     version: main
+
+collections:
+  - name: ansible.netcommon
