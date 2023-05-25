@@ -13,4 +13,9 @@
   tasks:
     - name: Hello World
       ansible.builtin.debug:
-        msg: "Howdy {{ ansible_facts['distribution'] }}"
+        msg: |-
+          Hostname: {{ inventory_hostname }}
+          IP: {{ ansible_default_ipv4.address }}
+          Family: {{ ansible_facts['os_family'] }}
+          Distro: {{ ansible_facts['distribution'] }}
+          Version: {{ ansible_facts['distribution_version'] }}
