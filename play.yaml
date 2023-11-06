@@ -3,6 +3,9 @@
   hosts: all
   gather_facts: false
 
+  vars:
+    awx_run_once: true
+
   tasks:
     - name: Setup Teleport connectivity
       ansible.builtin.include_role:
