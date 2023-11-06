@@ -1,14 +1,18 @@
 ---
-- hosts: all
+- name: Configure Teleport
+  hosts: all
   gather_facts: false
 
-  pre_tasks:
+  tasks:
     - name: Setup Teleport connectivity
       ansible.builtin.include_role:
         name: awx-teleport-connector
 
-    - name: Gathering facts
-      ansible.builtin.setup:
+    - name: Clear Python facts
+      meta: clear_facts
+
+- name: Run tasks
+  hosts: all
 
   tasks:
     - name: Hello World
